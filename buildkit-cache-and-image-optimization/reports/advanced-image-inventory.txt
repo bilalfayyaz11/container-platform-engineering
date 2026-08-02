@@ -1,0 +1,16 @@
+REPOSITORY      TAG                SIZE
+go-build        source-change      8.13MB
+go-build        compose            8.13MB
+go-build        optimized          8.13MB
+go-build        optimized-cached   8.13MB
+go-build        single-stage       639MB
+node-build      parallel           253MB
+node-build      secret-safe        253MB
+node-build      source-change      253MB
+node-build      cache-import       253MB
+node-build      debug-output       253MB
+node-build      metadata           253MB
+node-build      optimized          253MB
+node-build      optimized-cached   253MB
+node-build      compose            253MB
+node-build      traditional        249MB

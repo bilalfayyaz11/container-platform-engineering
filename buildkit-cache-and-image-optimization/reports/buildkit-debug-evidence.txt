@@ -1,0 +1,42 @@
+#0 building with "engineering-builder" instance using docker-container driver
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 733B done
+#1 DONE 0.0s
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.12
+#2 DONE 0.1s
+#3 docker-image://docker.io/docker/dockerfile:1.12@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25
+#3 resolve docker.io/docker/dockerfile:1.12@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25
+#3 resolve docker.io/docker/dockerfile:1.12@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25 0.0s done
+#3 CACHED
+#4 [internal] load metadata for docker.io/library/node:24-alpine
+#4 DONE 0.1s
+#5 [internal] load .dockerignore
+#5 transferring context: 137B done
+#5 DONE 0.0s
+#6 [dependencies 1/4] FROM docker.io/library/node:24-alpine@sha256:f70403e87646dc51b45295f4b8b70cdad0b63d2297c4c9899119b03f7af7a6b3
+#6 resolve docker.io/library/node:24-alpine@sha256:f70403e87646dc51b45295f4b8b70cdad0b63d2297c4c9899119b03f7af7a6b3 0.0s done
+#6 DONE 0.0s
+#7 [internal] load build context
+#7 transferring context: 101B done
+#7 DONE 0.0s
+#8 [dependencies 4/4] RUN --mount=type=cache,id=node-npm-cache,target=/root/.npm,sharing=locked     npm ci --omit=dev
+#8 CACHED
+#9 [runtime 3/5] COPY --from=dependencies /app/node_modules ./node_modules
+#9 CACHED
+#10 [runtime 4/5] COPY package.json package-lock.json server.js ./
+#10 CACHED
+#11 [dependencies 2/4] WORKDIR /app
+#11 CACHED
+#12 [dependencies 3/4] COPY package.json package-lock.json ./
+#12 CACHED
+#13 [runtime 5/5] RUN chown -R node:node /app
+#13 CACHED
+#14 exporting to oci image format
+#14 exporting layers done
+#14 exporting manifest sha256:a7944fd31205b86bdb2208c9dae27d1cce59d5220a84f952d8e047e402aec51d done
+#14 exporting config sha256:45e3bc45932737a4fc4afde49b0c4bbbbe982b46514b286aaca0d589080937d9 done
+#14 sending tarball
+#14 sending tarball 1.5s done
+#14 DONE 1.5s
+#15 importing to docker
+#15 DONE 0.0s

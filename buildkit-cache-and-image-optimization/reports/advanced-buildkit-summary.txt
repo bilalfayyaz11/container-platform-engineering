@@ -1,0 +1,35 @@
+Advanced BuildKit Workflow Report
+Generated: 2026-08-02T22:10:07+00:00
+
+Validated capabilities:
+- parallel multi-stage dependency graph
+- Compose-based BuildKit builds
+- multi-service runtime validation
+- local cache export
+- cache import into a separate builder
+- detailed plain build output
+- metadata-file generation
+- builder disk-usage inspection
+
+External cache import timing:
+7423 ms
+
+Builders:
+NAME/NODE                       DRIVER/ENDPOINT                   STATUS    BUILDKIT   PLATFORMS
+cache-validation-builder        docker-container                                       
+ \_ cache-validation-builder0    \_ unix:///var/run/docker.sock   running   v0.31.2    linux/amd64 (+3), linux/386
+engineering-builder*            docker-container                                       
+ \_ engineering-builder0         \_ unix:///var/run/docker.sock   running   v0.31.2    linux/amd64 (+3), linux/386
+default                         docker                                                 
+ \_ default                      \_ default                       running   v0.31.0    linux/amd64 (+3)
+
+Compose services:
+NAME                   IMAGE                COMMAND                  SERVICE        CREATED          STATUS                    PORTS
+compose-go-service     go-build:compose     "/service"               go-service     21 seconds ago   Up 21 seconds             127.0.0.1:8082->8080/tcp
+compose-node-service   node-build:compose   "docker-entrypoint.s…"   node-service   21 seconds ago   Up 21 seconds (healthy)   127.0.0.1:3002->3000/tcp
+
+Node cache directory:
+59M	/home/ubuntu/container-build-engineering/cache/node-local-cache
+
+Go cache directory:
+85M	/home/ubuntu/container-build-engineering/cache/go-local-cache

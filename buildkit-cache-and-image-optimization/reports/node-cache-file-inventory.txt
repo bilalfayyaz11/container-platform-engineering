@@ -1,0 +1,2 @@
+/home/ubuntu/container-build-engineering/cache/node-local-cache/index.json
+/home/ubuntu/container-build-engineering/cache/node-local-cache/oci-layout

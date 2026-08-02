@@ -1,0 +1,3 @@
+NAME                   IMAGE                COMMAND                  SERVICE        CREATED              STATUS                        PORTS
+compose-go-service     go-build:compose     "/service"               go-service     About a minute ago   Up About a minute             127.0.0.1:8082->8080/tcp
+compose-node-service   node-build:compose   "docker-entrypoint.s…"   node-service   About a minute ago   Up About a minute (healthy)   127.0.0.1:3002->3000/tcp

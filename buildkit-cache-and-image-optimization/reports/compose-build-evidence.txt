@@ -1,0 +1,51 @@
+#2 [node-service internal] load build definition from Dockerfile
+#3 [go-service internal] load build definition from Dockerfile
+#4 [node-service] resolve image config for docker-image://docker.io/docker/dockerfile:1.12
+#5 [go-service] docker-image://docker.io/docker/dockerfile:1.12@sha256:93bfd3b68c109427185cd78b4779fc82b484b0b7618e36d0f104d4d801e66d25
+#5 CACHED
+#6 [go-service internal] load metadata for docker.io/library/golang:1.24-alpine
+#7 [node-service internal] load metadata for docker.io/library/node:24-alpine
+#8 [go-service internal] load .dockerignore
+#9 [node-service internal] load .dockerignore
+#10 [go-service dependencies 1/4] FROM docker.io/library/golang:1.24-alpine@sha256:8bee1901f1e530bfb4a7850aa7a479d17ae3a18beb6e09064ed54cfd245b7191
+#11 [go-service internal] load build context
+#12 [node-service dependencies 1/4] FROM docker.io/library/node:24-alpine@sha256:f70403e87646dc51b45295f4b8b70cdad0b63d2297c4c9899119b03f7af7a6b3
+#13 [go-service validation 1/2] COPY main.go main_test.go ./
+#13 CACHED
+#14 [go-service builder 1/1] RUN --mount=type=cache,id=go-module-cache,target=/go/pkg/mod,sharing=locked     --mount=type=cache,id=go-build-cache,target=/root/.cache/go-build,sharing=locked     CGO_ENABLED=0     GOOS=linux     GOARCH=amd64     go build       -trimpath       -ldflags="-s -w"       -o /out/service       .
+#14 CACHED
+#15 [go-service dependencies 4/4] RUN --mount=type=cache,id=go-module-cache,target=/go/pkg/mod,sharing=locked     go mod download
+#15 CACHED
+#16 [go-service dependencies 3/4] COPY go.mod ./
+#16 CACHED
+#17 [go-service validation 2/2] RUN --mount=type=cache,id=go-module-cache,target=/go/pkg/mod,sharing=locked     --mount=type=cache,id=go-build-cache,target=/root/.cache/go-build,sharing=locked     go test ./...
+#17 CACHED
+#18 [go-service dependencies 2/4] WORKDIR /src
+#18 CACHED
+#19 [go-service runtime 1/1] COPY --from=builder /out/service /service
+#19 CACHED
+#20 [node-service internal] load build context
+#21 [go-service] exporting to oci image format
+#21 exporting layers done
+#21 exporting manifest sha256:c62b750481929c2bb6a9a3229765b7184077b5334741b1d94265553328932f66
+#22 [node-service dependencies 3/4] COPY package.json package-lock.json ./
+#22 CACHED
+#23 [node-service runtime 4/5] COPY package.json package-lock.json server.js ./
+#23 CACHED
+#24 [node-service dependencies 2/4] WORKDIR /app
+#24 CACHED
+#25 [node-service dependencies 4/4] RUN --mount=type=cache,id=node-npm-cache,target=/root/.npm,sharing=locked     npm ci --omit=dev
+#25 CACHED
+#26 [node-service runtime 3/5] COPY --from=dependencies /app/node_modules ./node_modules
+#26 CACHED
+#27 [node-service runtime 5/5] RUN chown -R node:node /app
+#27 CACHED
+#21 [go-service] exporting to oci image format
+#21 exporting manifest sha256:c62b750481929c2bb6a9a3229765b7184077b5334741b1d94265553328932f66 0.0s done
+#21 exporting config sha256:a419fd753779ce9a12b4c3216bacc33a3b99c7ba4954dd6d39ee6c650c6365ed 0.0s done
+#29 [go-service] resolving provenance for metadata file
+#30 [node-service] exporting to oci image format
+#30 exporting layers done
+#30 exporting manifest sha256:b5bb160b72d12b29b43e8d6585c7dba0d4a1e83c67a9c1a584999a4b81a4fbe8 0.0s done
+#30 exporting config sha256:04c87f724c1e6875577c65a0d79f75d5015caf2b59b716ee24aae8e1efe83343 0.0s done
+#32 [node-service] resolving provenance for metadata file

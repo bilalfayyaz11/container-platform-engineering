@@ -1,0 +1,43 @@
+Container Build Engineering Final Report
+Generated: 2026-08-02T22:11:00+00:00
+
+BUILDKIT CAPABILITIES VALIDATED
+- dedicated Docker-container Buildx builder
+- package-manager cache mounts
+- Go compiler and module caches
+- dependency-aware layer ordering
+- source-only cache invalidation
+- secure build-time secret mounts
+- multi-stage Node.js image
+- scratch-based Go runtime image
+- independent parallel stages
+- Docker Compose BuildKit integration
+- local cache export and import
+- plain progress diagnostics
+- metadata-file generation
+- builder disk-usage inspection
+
+SECURITY VALIDATION
+- Node runtime executes as non-root
+- Go runtime executes as non-root
+- build secret absent from final filesystem
+- build secret absent from image history
+- build secret absent from image configuration
+- build secret absent from runtime environment
+
+PERFORMANCE
+- Node cold and cached builds measured
+- Go cold and cached builds measured
+- external cache imported into an independent builder
+- Go image reduction: 98.12%
+
+RUNTIME SERVICES
+- optimized Node service: http://127.0.0.1:3000
+- optimized Go service: http://127.0.0.1:8080
+- Compose Node service: http://127.0.0.1:3002
+- Compose Go service: http://127.0.0.1:8082
+
+CLEANUP
+- cleanup script targets only labeled containers
+- cleanup script targets only implementation images
+- cleanup does not remove unrelated Docker resources

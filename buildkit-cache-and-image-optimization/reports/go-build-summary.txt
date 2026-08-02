@@ -1,0 +1,23 @@
+Go Multi-Stage Build Summary
+Generated: 2026-08-02T22:08:49+00:00
+
+Build timings:
+build,elapsed_ms
+go-single-stage,61393
+go-multistage-cold,52460
+go-multistage-cached,974
+go-source-change,3067
+
+Image comparison:
+go-build:single-stage size_bytes=129031618 user=
+go-build:optimized size_bytes=2426286 user=65532:65532
+
+Size reduction:
+single_stage_bytes=129031618
+optimized_bytes=2426286
+
+Runtime configuration:
+User=65532:65532 Entrypoint=["/service"] SizeBytes=2426286
+
+Runtime response:
+{"status":"healthy","service":"container-build-go-service","timestamp":"2026-08-02T22:08:47Z"}

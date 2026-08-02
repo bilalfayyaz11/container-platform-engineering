@@ -1,0 +1,35 @@
+#1 DONE 0.0s
+#2 DONE 0.1s
+#3 CACHED
+#4 DONE 0.1s
+#5 DONE 0.0s
+#6 DONE 0.0s
+#7 DONE 0.0s
+#8 CACHED
+#9 CACHED
+#10 [validation-dependencies 1/1] RUN --mount=type=cache,id=parallel-validation-npm-cache,target=/root/.npm,sharing=locked     npm ci
+#10 DONE 3.0s
+#11 [test 1/2] COPY test.js ./
+#11 DONE 0.1s
+#12 [source-validation 1/2] COPY server.js ./
+#12 DONE 0.1s
+#13 [source-validation 2/2] RUN node --check server.js
+#13 DONE 0.2s
+#14 [test 2/2] RUN npm test
+#14 0.718 > container-build-node-service@1.0.0 test
+#14 0.718 > node test.js
+#14 0.825 application test: PASS
+#14 DONE 0.9s
+#15 [runtime 3/7] COPY --from=production-dependencies /app/node_modules ./node_modules
+#15 CACHED
+#16 [runtime 4/7] COPY --from=test /app/package.json ./
+#16 CACHED
+#17 [runtime 5/7] COPY --from=test /app/package-lock.json ./
+#17 CACHED
+#18 [runtime 6/7] COPY --from=source-validation /app/server.js ./
+#18 CACHED
+#19 [production-dependencies 1/1] RUN --mount=type=cache,id=parallel-prod-npm-cache,target=/root/.npm,sharing=locked     npm ci --omit=dev
+#19 CACHED
+#20 CACHED
+#21 DONE 1.6s
+#22 DONE 0.0s

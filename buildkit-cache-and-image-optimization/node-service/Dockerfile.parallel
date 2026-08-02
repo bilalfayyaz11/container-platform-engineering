@@ -1,0 +1,49 @@
+# syntax=docker/dockerfile:1.12
+
+FROM node:24-alpine AS base
+
+WORKDIR /app
+
+COPY package.json package-lock.json ./
+
+FROM base AS production-dependencies
+
+RUN --mount=type=cache,id=parallel-prod-npm-cache,target=/root/.npm,sharing=locked \
+    npm ci --omit=dev
+
+FROM base AS validation-dependencies
+
+RUN --mount=type=cache,id=parallel-validation-npm-cache,target=/root/.npm,sharing=locked \
+    npm ci
+
+FROM validation-dependencies AS test
+
+COPY test.js ./
+
+RUN npm test
+
+FROM validation-dependencies AS source-validation
+
+COPY server.js ./
+
+RUN node --check server.js
+
+FROM node:24-alpine AS runtime
+
+ENV NODE_ENV=production
+ENV PORT=3000
+
+WORKDIR /app
+
+COPY --from=production-dependencies /app/node_modules ./node_modules
+COPY --from=test /app/package.json ./
+COPY --from=test /app/package-lock.json ./
+COPY --from=source-validation /app/server.js ./
+
+RUN chown -R node:node /app
+
+USER node
+
+EXPOSE 3000
+
+CMD ["npm", "start"]

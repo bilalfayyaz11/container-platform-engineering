@@ -1,0 +1,10 @@
+#0 building with "cache-validation-builder" instance using docker-container driver
+#8 importing cache manifest from local:14196261440755207209
+#8 inferred cache manifest type: application/vnd.oci.image.manifest.v1+json done
+#9 [dependencies 4/4] RUN --mount=type=cache,id=node-npm-cache,target=/root/.npm,sharing=locked     npm ci --omit=dev
+#9 CACHED
+#10 CACHED
+#11 CACHED
+#12 CACHED
+#13 CACHED
+#14 CACHED

@@ -1,0 +1,2 @@
+go-build:single-stage size_bytes=129031618 user=
+go-build:optimized size_bytes=2426286 user=65532:65532

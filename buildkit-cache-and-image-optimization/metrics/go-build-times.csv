@@ -1,0 +1,5 @@
+build,elapsed_ms
+go-single-stage,61393
+go-multistage-cold,52460
+go-multistage-cached,974
+go-source-change,3067

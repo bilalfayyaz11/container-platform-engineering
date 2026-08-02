@@ -1,0 +1,12 @@
+cache/
+secrets/
+*.tar
+*.log
+*.tmp
+.env
+.env.*
+private-build-token.txt
+node_modules/
+bin/
+dist/
+coverage/

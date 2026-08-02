@@ -1,0 +1,7 @@
+[
+  "buildx.build.provenance",
+  "buildx.build.ref",
+  "containerimage.descriptor",
+  "containerimage.digest",
+  "image.name"
+]

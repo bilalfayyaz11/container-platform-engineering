@@ -1,0 +1,55 @@
+name: container-build-engineering
+services:
+  go-service:
+    build:
+      context: /home/ubuntu/container-build-engineering/go-service
+      dockerfile: Dockerfile
+      x-bake:
+        tags:
+          - go-build:compose
+    container_name: compose-go-service
+    environment:
+      PORT: "8080"
+    image: go-build:compose
+    networks:
+      build-network: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 8080
+        published: "8082"
+        protocol: tcp
+  node-service:
+    build:
+      context: /home/ubuntu/container-build-engineering/node-service
+      dockerfile: Dockerfile
+      x-bake:
+        tags:
+          - node-build:compose
+    container_name: compose-node-service
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --quiet
+        - --spider
+        - http://127.0.0.1:3000/health
+      timeout: 3s
+      interval: 5s
+      retries: 5
+      start_period: 5s
+    image: node-build:compose
+    networks:
+      build-network: null
+    ports:
+      - mode: ingress
+        host_ip: 127.0.0.1
+        target: 3000
+        published: "3002"
+        protocol: tcp
+networks:
+  build-network:
+    name: container-build-network

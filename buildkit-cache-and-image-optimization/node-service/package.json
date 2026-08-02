@@ -1,0 +1,15 @@
+{
+  "name": "container-build-node-service",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Node.js service for BuildKit cache and multi-stage build analysis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "dependencies": {
+    "express": "5.1.0",
+    "lodash": "4.17.21"
+  }
+}

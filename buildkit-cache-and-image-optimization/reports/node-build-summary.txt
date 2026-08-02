@@ -1,0 +1,30 @@
+Node.js BuildKit Build Summary
+Generated: 2026-08-02T22:04:50+00:00
+
+Build timings:
+build,elapsed_ms
+traditional-cold,6374
+buildkit-cold,19300
+buildkit-cached,2591
+buildkit-source-change,10109
+
+Image comparison:
+node-build:traditional size_bytes=60672363 user=
+node-build:optimized size_bytes=60041791 user=node
+
+Runtime user:
+uid=1000(node) gid=1000(node) groups=1000(node)
+
+Runtime health:
+{
+    "Status": "healthy",
+    "FailingStreak": 0,
+    "Log": [
+        {
+            "Start": "2026-08-02T22:04:50.134964207Z",
+            "End": "2026-08-02T22:04:50.211180592Z",
+            "ExitCode": 0,
+            "Output": ""
+        }
+    ]
+}
