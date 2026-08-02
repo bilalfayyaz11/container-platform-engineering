@@ -1,0 +1,36 @@
+services:
+  web-with-health:
+    image: nginx:alpine
+
+    ports:
+      - target: 80
+        published: 8081
+        protocol: tcp
+        mode: ingress
+
+    healthcheck:
+      test:
+        - CMD
+        - wget
+        - --quiet
+        - --tries=1
+        - --spider
+        - http://127.0.0.1/
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+    networks:
+      - healthnet
+
+    deploy:
+      replicas: 2
+
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+networks:
+  healthnet:
+    driver: overlay

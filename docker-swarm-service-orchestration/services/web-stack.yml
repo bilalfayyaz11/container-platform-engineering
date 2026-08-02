@@ -1,0 +1,56 @@
+services:
+  web:
+    image: nginx:alpine
+
+    ports:
+      - target: 80
+        published: 8080
+        protocol: tcp
+        mode: ingress
+
+    volumes:
+      - type: bind
+        source: /home/ubuntu/docker-swarm-orchestration/web-content
+        target: /usr/share/nginx/html
+        read_only: true
+
+    networks:
+      - webnet
+
+    deploy:
+      replicas: 2
+
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 3
+
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+
+  redis:
+    image: redis:alpine
+
+    command: redis-server --appendonly yes
+
+    volumes:
+      - redis-data:/data
+
+    networks:
+      - webnet
+
+    deploy:
+      replicas: 1
+
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+
+volumes:
+  redis-data:
+
+networks:
+  webnet:
+    driver: overlay
