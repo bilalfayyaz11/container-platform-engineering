@@ -1,0 +1,58 @@
+[
+    {
+        "Name": "debugging-network",
+        "Id": "[CONTAINER_OR_IMAGE_ID]",
+        "Created": "2026-08-02T21:54:39.646949023Z",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "[IP_ADDRESS]/16",
+                    "Gateway": "[IP_ADDRESS]"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Options": {},
+        "Labels": {
+            "debugging.scope": "container-debugging-engineering"
+        },
+        "Containers": {
+            "[CONTAINER_OR_IMAGE_ID]": {
+                "Name": "env-debug",
+                "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+                "MacAddress": "16:21:bb:1b:b3:1e",
+                "IPv4Address": "[IP_ADDRESS]/16",
+                "IPv6Address": ""
+            },
+            "[CONTAINER_OR_IMAGE_ID]": {
+                "Name": "webserver-debug",
+                "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+                "MacAddress": "8a:6f:78:f6:58:03",
+                "IPv4Address": "[IP_ADDRESS]/16",
+                "IPv6Address": ""
+            }
+        },
+        "Status": {
+            "IPAM": {
+                "Subnets": {
+                    "[IP_ADDRESS]/16": {
+                        "IPsInUse": 5,
+                        "DynamicIPsAvailable": 65531
+                    }
+                }
+            }
+        }
+    }
+]

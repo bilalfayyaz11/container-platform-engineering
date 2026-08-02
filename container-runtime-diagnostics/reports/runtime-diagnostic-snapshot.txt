@@ -1,0 +1,38 @@
+Runtime Diagnostic Snapshot
+Generated: 2026-08-02T21:54:56+00:00
+
+Container: webserver-debug
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                4709                4685                0                   21:52               ?                   00:00:00            nginx: master process nginx -g daemon off;
+message+            4784                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+message+            4785                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+message+            4786                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+message+            4787                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+
+Status=running Running=true OOMKilled=false RestartCount=0 IP=[IP_ADDRESS] [IP_ADDRESS] 
+
+Container: noisy-service
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                4914                4890                0                   21:52               ?                   00:00:00            sh -c counter=0 while true; do counter=$((counter + 1)) echo "INFO iteration=$counter service=healthy" if [ $((counter % 3)) -eq 0 ]; then echo "WARN iteration=$counter latency=high" >&2 fi if [ $((counter % 5)) -eq 0 ]; then echo "ERROR iteration=$counter backend=unreachable" >&2 fi sleep 2 done
+root                7465                4914                0                   21:54               ?                   00:00:00            sleep 2
+
+Status=running Running=true OOMKilled=false RestartCount=0 IP=[IP_ADDRESS] 
+
+Container: debug-config
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                5211                5187                0                   21:52               ?                   00:00:00            sleep 3600
+
+Status=running Running=true OOMKilled=false RestartCount=0 IP=[IP_ADDRESS] 
+
+Container: debug-cpu-load
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                6580                6555                49                  21:53               ?                   00:00:28            sh -c while true; do i=0 while [ "$i" -lt 50000 ]; do i=$((i + 1)) done done
+
+Status=running Running=true OOMKilled=false RestartCount=0 IP=[IP_ADDRESS] 
+
+Container: debug-memory-load
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                6711                6688                0                   21:54               ?                   00:00:00            python -u -c import time chunks = [] for index in range(70): chunks.append(bytearray(1024 * 1024)) if index % 10 == 0: print(f"allocated_mb={index + 1}", flush=True) time.sleep(0.15) print("allocation_complete", flush=True) time.sleep(3600)
+
+Status=running Running=true OOMKilled=false RestartCount=0 IP=[IP_ADDRESS] 
+

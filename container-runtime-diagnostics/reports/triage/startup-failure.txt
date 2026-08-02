@@ -1,0 +1,68 @@
+Container Diagnostic Report
+===========================
+Container: startup-failure
+Generated: 2026-08-02T21:56:14+00:00
+
+STATUS
+Name=startup-failure Image=alpine:latest Status=Created Ports=
+
+STATE
+Status=created Running=false ExitCode=127 OOMKilled=false Restarting=false RestartCount=0 Error=failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "/nonexistent/start-command": stat /nonexistent/start-command: no such file or directory
+
+TIMESTAMPS
+Created=2026-08-02T21:52:27.068812492Z Started=0001-01-01T00:00:00Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=alpine:latest Entrypoint=null Command=["/nonexistent/start-command"] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=0 MemorySwap=0 NanoCPUs=0 CpuShares=0 PidsLimit=<no value>
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "MacAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    }
+}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
+RECENT LOGS
+
+RESOURCE SNAPSHOT
+Container is not running; live statistics unavailable.
+
+DIAGNOSTIC HINTS
+- Runtime error recorded: failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "/nonexistent/start-command": stat /nonexistent/start-command: no such file or directory
+- Container is not running; inspect command, entrypoint, logs, and exit code.
+- Exit code 127 usually means the command or executable was not found.
+
+END OF REPORT

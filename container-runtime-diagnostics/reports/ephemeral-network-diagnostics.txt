@@ -1,0 +1,20 @@
+===== DNS =====
+[IP_ADDRESS]
+
+===== TCP CONNECTION =====
+
+===== HTTP HEADERS =====
+HTTP/1.1 200 OK
+Server: nginx/1.31.3
+Date: Sun, 02 Aug 2026 21:54:56 GMT
+Content-Type: text/html
+Content-Length: 896
+Last-Modified: Wed, 15 Jul 2026 16:53:52 GMT
+Connection: keep-alive
+ETag: "6a57bb20-380"
+Accept-Ranges: bytes
+
+
+===== ROUTES =====
+default via [IP_ADDRESS] dev eth0 
+[IP_ADDRESS]/16 dev eth0 proto kernel scope link src [IP_ADDRESS] 

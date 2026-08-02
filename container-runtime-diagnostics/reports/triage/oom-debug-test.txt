@@ -1,0 +1,82 @@
+Container Diagnostic Report
+===========================
+Container: oom-debug-test
+Generated: 2026-08-02T21:56:13+00:00
+
+STATUS
+Name=oom-debug-test Image=python:3.13-alpine Status=Exited (137) 13 seconds ago Ports=
+
+STATE
+Status=exited Running=false ExitCode=137 OOMKilled=true Restarting=false RestartCount=0 Error=
+
+TIMESTAMPS
+Created=2026-08-02T21:55:57.875080262Z Started=2026-08-02T21:55:57.966482827Z Finished=2026-08-02T21:56:00.046247694Z
+
+IMAGE AND COMMAND
+Image=python:3.13-alpine Entrypoint=null Command=["python","-u","-c","\nimport time\n\nprint(\"starting memory allocation\", flush=True)\nchunks = []\n\nwhile True:\n    chunks.append(bytearray(4 * 1024 * 1024))\n    print(f\"allocated_mb={len(chunks) * 4}\", flush=True)\n    time.sleep(0.15)\n"] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=50331648 MemorySwap=50331648 NanoCPUs=250000000 CpuShares=0 PidsLimit=32
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "",
+        "Gateway": "",
+        "IPAddress": "",
+        "MacAddress": "",
+        "IPPrefixLen": 0,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    }
+}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305
+PYTHON_VERSION=3.13.14
+PYTHON_SHA256=[CONTAINER_OR_IMAGE_ID]
+
+
+RECENT LOGS
+2026-08-02T21:55:58.335428341Z starting memory allocation
+2026-08-02T21:55:58.338748453Z allocated_mb=4
+2026-08-02T21:55:58.492212420Z allocated_mb=8
+2026-08-02T21:55:58.645513431Z allocated_mb=12
+2026-08-02T21:55:58.798699917Z allocated_mb=16
+2026-08-02T21:55:58.951917855Z allocated_mb=20
+2026-08-02T21:55:59.105171252Z allocated_mb=24
+2026-08-02T21:55:59.258575875Z allocated_mb=28
+2026-08-02T21:55:59.411956388Z allocated_mb=32
+2026-08-02T21:55:59.565306049Z allocated_mb=36
+2026-08-02T21:55:59.718734113Z allocated_mb=40
+2026-08-02T21:55:59.872112045Z allocated_mb=44
+
+RESOURCE SNAPSHOT
+Container is not running; live statistics unavailable.
+
+DIAGNOSTIC HINTS
+- Container is not running; inspect command, entrypoint, logs, and exit code.
+- Container was terminated by the kernel memory controller.
+
+END OF REPORT

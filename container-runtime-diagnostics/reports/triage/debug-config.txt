@@ -1,0 +1,79 @@
+Container Diagnostic Report
+===========================
+Container: debug-config
+Generated: 2026-08-02T21:56:01+00:00
+
+STATUS
+Name=debug-config Image=alpine:latest Status=Up 3 minutes Ports=
+
+STATE
+Status=running Running=true ExitCode=0 OOMKilled=false Restarting=false RestartCount=0 Error=
+
+TIMESTAMPS
+Created=2026-08-02T21:52:27.482609548Z Started=2026-08-02T21:52:27.572308655Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=alpine:latest Entrypoint=null Command=["sleep","3600"] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=268435456 MemorySwap=268435456 NanoCPUs=500000000 CpuShares=0 PidsLimit=64
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=unless-stopped LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+        "Gateway": "[IP_ADDRESS]",
+        "IPAddress": "[IP_ADDRESS]",
+        "MacAddress": "42:ea:63:d6:fa:80",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    }
+}
+
+MOUNTS
+[
+    {
+        "Type": "tmpfs",
+        "Source": "",
+        "Destination": "/app/temp",
+        "Mode": "",
+        "RW": true,
+        "Propagation": ""
+    }
+]
+
+ENVIRONMENT — REDACTED
+DEBUG_LEVEL=verbose
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
+RECENT LOGS
+
+RESOURCE SNAPSHOT
+CPU=0.00% Memory=340KiB / 256MiB MemoryPercent=0.13% Network=2.94kB / 126B Block=0B / 0B PIDs=1
+
+PROCESS SNAPSHOT
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                5211                5187                0                   21:52               ?                   00:00:00            sleep 3600
+
+DIAGNOSTIC HINTS
+
+END OF REPORT

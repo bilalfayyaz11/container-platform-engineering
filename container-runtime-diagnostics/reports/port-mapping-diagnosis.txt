@@ -1,0 +1,1 @@
+ConfiguredPorts={"80/tcp":{},"8080/tcp":{}} PublishedPorts={"80/tcp":null,"8080/tcp":[{"HostIp":"[IP_ADDRESS]","HostPort":"9090"}]}

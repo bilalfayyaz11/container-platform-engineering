@@ -1,0 +1,100 @@
+Container Diagnostic Report
+===========================
+Container: noisy-service
+Generated: 2026-08-02T21:56:11+00:00
+
+STATUS
+Name=noisy-service Image=alpine:latest Status=Up 4 minutes Ports=
+
+STATE
+Status=running Running=true ExitCode=0 OOMKilled=false Restarting=false RestartCount=0 Error=
+
+TIMESTAMPS
+Created=2026-08-02T21:52:10.260954231Z Started=2026-08-02T21:52:10.346422151Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=alpine:latest Entrypoint=null Command=["sh","-c","\n    counter=0\n\n    while true; do\n      counter=$((counter + 1))\n\n      echo \"INFO iteration=$counter service=healthy\"\n\n      if [ $((counter % 3)) -eq 0 ]; then\n        echo \"WARN iteration=$counter latency=high\" >&2\n      fi\n\n      if [ $((counter % 5)) -eq 0 ]; then\n        echo \"ERROR iteration=$counter backend=unreachable\" >&2\n      fi\n\n      sleep 2\n    done\n  "] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=0 MemorySwap=0 NanoCPUs=0 CpuShares=0 PidsLimit=<no value>
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+        "Gateway": "[IP_ADDRESS]",
+        "IPAddress": "[IP_ADDRESS]",
+        "MacAddress": "aa:d2:4f:80:3a:d6",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    }
+}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
+RECENT LOGS
+2026-08-02T21:55:32.695062868Z WARN iteration=102 latency=high
+2026-08-02T21:55:34.696632886Z INFO iteration=103 service=healthy
+2026-08-02T21:55:36.697795718Z INFO iteration=104 service=healthy
+2026-08-02T21:55:38.699117828Z WARN iteration=105 latency=high
+2026-08-02T21:55:38.699146059Z ERROR iteration=105 backend=unreachable
+2026-08-02T21:55:38.699114328Z INFO iteration=105 service=healthy
+2026-08-02T21:55:40.700753039Z INFO iteration=106 service=healthy
+2026-08-02T21:55:42.702056096Z INFO iteration=107 service=healthy
+2026-08-02T21:55:44.703331338Z INFO iteration=108 service=healthy
+2026-08-02T21:55:44.703338599Z WARN iteration=108 latency=high
+2026-08-02T21:55:46.704608076Z INFO iteration=109 service=healthy
+2026-08-02T21:55:48.705847993Z INFO iteration=110 service=healthy
+2026-08-02T21:55:48.705847983Z ERROR iteration=110 backend=unreachable
+2026-08-02T21:55:50.707662651Z INFO iteration=111 service=healthy
+2026-08-02T21:55:50.708031425Z WARN iteration=111 latency=high
+2026-08-02T21:55:52.708795684Z INFO iteration=112 service=healthy
+2026-08-02T21:55:54.710772138Z INFO iteration=113 service=healthy
+2026-08-02T21:55:56.714845080Z WARN iteration=114 latency=high
+2026-08-02T21:55:56.714892491Z INFO iteration=114 service=healthy
+2026-08-02T21:55:58.716268424Z ERROR iteration=115 backend=unreachable
+2026-08-02T21:55:58.716431190Z INFO iteration=115 service=healthy
+2026-08-02T21:56:00.717614133Z INFO iteration=116 service=healthy
+2026-08-02T21:56:02.719151159Z INFO iteration=117 service=healthy
+2026-08-02T21:56:02.719183790Z WARN iteration=117 latency=high
+2026-08-02T21:56:04.720619033Z INFO iteration=118 service=healthy
+2026-08-02T21:56:06.721923351Z INFO iteration=119 service=healthy
+2026-08-02T21:56:08.723436427Z WARN iteration=120 latency=high
+2026-08-02T21:56:08.723471139Z ERROR iteration=120 backend=unreachable
+2026-08-02T21:56:08.723448048Z INFO iteration=120 service=healthy
+2026-08-02T21:56:10.724870660Z INFO iteration=121 service=healthy
+
+RESOURCE SNAPSHOT
+CPU=0.13% Memory=520KiB / 15.46GiB MemoryPercent=0.00% Network=3.32kB / 126B Block=0B / 0B PIDs=2
+
+PROCESS SNAPSHOT
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                4914                4890                0                   21:52               ?                   00:00:00            sh -c counter=0 while true; do counter=$((counter + 1)) echo "INFO iteration=$counter service=healthy" if [ $((counter % 3)) -eq 0 ]; then echo "WARN iteration=$counter latency=high" >&2 fi if [ $((counter % 5)) -eq 0 ]; then echo "ERROR iteration=$counter backend=unreachable" >&2 fi sleep 2 done
+root                9989                4914                0                   21:56               ?                   00:00:00            sleep 2
+
+DIAGNOSTIC HINTS
+
+END OF REPORT

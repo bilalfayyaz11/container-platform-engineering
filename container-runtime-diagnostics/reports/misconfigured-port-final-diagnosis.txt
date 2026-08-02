@@ -1,0 +1,16 @@
+Misconfigured Port Diagnosis
+Generated: 2026-08-02T21:56:01+00:00
+
+Host mapping:
+8080/tcp -> [IP_ADDRESS]:9090
+
+Container IP: [IP_ADDRESS]
+
+Nginx configuration:
+    listen       80;
+    listen  [::]:80;
+
+Conclusion:
+The host forwards port 9090 to container port 8080.
+Nginx listens on container port 80.
+Correct publication: [IP_ADDRESS]:9090:80

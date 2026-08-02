@@ -1,0 +1,10 @@
+Container Failure Diagnosis Matrix
+Generated: 2026-08-02T21:56:17+00:00
+
+CONTAINER                STATUS       EXIT       OOM        RESTARTS   ERROR
+startup-failure          created      127        false      0          failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "/nonexistent/start-command": stat /nonexistent/start-command: no such file or directory
+misconfigured-web        running      0          false      0          
+port-conflict-test       created      128        false      0          failed to set up container networking: driver failed programming external connectivity on endpoint port-conflict-test ([CONTAINER_OR_IMAGE_ID]): Bind for [IP_ADDRESS]:8080 failed: port is already allocated
+oom-debug-test           exited       137        true       0          
+debug-cpu-load           running      0          false      0          
+debug-memory-load        running      0          false      0          

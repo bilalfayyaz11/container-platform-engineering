@@ -1,0 +1,55 @@
+Container Diagnostic Report
+===========================
+Container: port-conflict-test
+Generated: 2026-08-02T21:56:13+00:00
+
+STATUS
+Name=port-conflict-test Image=nginx:alpine Status=Created Ports=
+
+STATE
+Status=created Running=false ExitCode=128 OOMKilled=false Restarting=false RestartCount=0 Error=failed to set up container networking: driver failed programming external connectivity on endpoint port-conflict-test ([CONTAINER_OR_IMAGE_ID]): Bind for [IP_ADDRESS]:8080 failed: port is already allocated
+
+TIMESTAMPS
+Created=2026-08-02T21:55:57.313503196Z Started=0001-01-01T00:00:00Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=nginx:alpine Entrypoint=["/docker-entrypoint.sh"] Command=["nginx","-g","daemon off;"] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=0 MemorySwap=0 NanoCPUs=0 CpuShares=0 PidsLimit=<no value>
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+NGINX_VERSION=1.31.3
+PKG_RELEASE=1
+DYNPKG_RELEASE=1
+NJS_VERSION=1.0.0
+NJS_RELEASE=1
+ACME_VERSION=0.4.1
+
+
+RECENT LOGS
+
+RESOURCE SNAPSHOT
+Container is not running; live statistics unavailable.
+
+DIAGNOSTIC HINTS
+- Runtime error recorded: failed to set up container networking: driver failed programming external connectivity on endpoint port-conflict-test ([CONTAINER_OR_IMAGE_ID]): Bind for [IP_ADDRESS]:8080 failed: port is already allocated
+- Container is not running; inspect command, entrypoint, logs, and exit code.
+
+END OF REPORT

@@ -1,0 +1,69 @@
+Container Diagnostic Report
+===========================
+Container: debug-cpu-load
+Generated: 2026-08-02T21:56:03+00:00
+
+STATUS
+Name=debug-cpu-load Image=alpine:latest Status=Up 2 minutes Ports=
+
+STATE
+Status=running Running=true ExitCode=0 OOMKilled=false Restarting=false RestartCount=0 Error=
+
+TIMESTAMPS
+Created=2026-08-02T21:53:59.303204131Z Started=2026-08-02T21:53:59.40958129Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=alpine:latest Entrypoint=null Command=["sh","-c","\n    while true; do\n      i=0\n      while [ \"$i\" -lt 50000 ]; do\n        i=$((i + 1))\n      done\n    done\n  "] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=67108864 MemorySwap=134217728 NanoCPUs=500000000 CpuShares=0 PidsLimit=32
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+        "Gateway": "[IP_ADDRESS]",
+        "IPAddress": "[IP_ADDRESS]",
+        "MacAddress": "7a:21:1d:06:00:44",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    }
+}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+
+RECENT LOGS
+
+RESOURCE SNAPSHOT
+CPU=50.18% Memory=348KiB / 64MiB MemoryPercent=0.53% Network=2.82kB / 126B Block=0B / 0B PIDs=1
+
+PROCESS SNAPSHOT
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                6580                6555                49                  21:53               ?                   00:01:02            sh -c while true; do i=0 while [ "$i" -lt 50000 ]; do i=$((i + 1)) done done
+
+DIAGNOSTIC HINTS
+
+END OF REPORT

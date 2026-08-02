@@ -1,0 +1,1 @@
+Status=created ExitCode=127 Error=failed to create task for container: failed to create shim task: OCI runtime create failed: runc create failed: unable to start container process: error during container init: exec: "/nonexistent/start-command": stat /nonexistent/start-command: no such file or directory Command=["/nonexistent/start-command"]

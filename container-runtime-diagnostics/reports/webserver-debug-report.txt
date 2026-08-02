@@ -1,0 +1,129 @@
+Container Diagnostic Report
+===========================
+Container: webserver-debug
+Generated: 2026-08-02T21:55:54+00:00
+
+STATUS
+Name=webserver-debug Image=nginx:alpine Status=Up 3 minutes Ports=[IP_ADDRESS]:8080->80/tcp
+
+STATE
+Status=running Running=true ExitCode=0 OOMKilled=false Restarting=false RestartCount=0 Error=
+
+TIMESTAMPS
+Created=2026-08-02T21:52:04.314853856Z Started=2026-08-02T21:52:04.52655447Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=nginx:alpine Entrypoint=["/docker-entrypoint.sh"] Command=["nginx","-g","daemon off;"] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=0 MemorySwap=0 NanoCPUs=0 CpuShares=0 PidsLimit=<no value>
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{
+    "80/tcp": [
+        {
+            "HostIp": "[IP_ADDRESS]",
+            "HostPort": "8080"
+        }
+    ]
+}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+        "Gateway": "[IP_ADDRESS]",
+        "IPAddress": "[IP_ADDRESS]",
+        "MacAddress": "36:86:23:9a:6e:cc",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    },
+    "debugging-network": {
+        "IPAMConfig": {},
+        "Links": null,
+        "Aliases": [],
+        "DriverOpts": {},
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+        "Gateway": "[IP_ADDRESS]",
+        "IPAddress": "[IP_ADDRESS]",
+        "MacAddress": "8a:6f:78:f6:58:03",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": [
+            "webserver-debug",
+            "13078dc585bc"
+        ]
+    }
+}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+NGINX_VERSION=1.31.3
+PKG_RELEASE=1
+DYNPKG_RELEASE=1
+NJS_VERSION=1.0.0
+NJS_RELEASE=1
+ACME_VERSION=0.4.1
+
+
+RECENT LOGS
+2026-08-02T21:52:04.793538305Z /docker-entrypoint.sh: /docker-entrypoint.d/ is not empty, will attempt to perform configuration
+2026-08-02T21:52:04.793587417Z /docker-entrypoint.sh: Looking for shell scripts in /docker-entrypoint.d/
+2026-08-02T21:52:04.795787679Z /docker-entrypoint.sh: Launching /docker-entrypoint.d/10-listen-on-ipv6-by-default.sh
+2026-08-02T21:52:04.808234800Z 10-listen-on-ipv6-by-default.sh: info: Getting the checksum of /etc/nginx/conf.d/default.conf
+2026-08-02T21:52:04.825566413Z 10-listen-on-ipv6-by-default.sh: info: Enabled listen on IPv6 in /etc/nginx/conf.d/default.conf
+2026-08-02T21:52:04.825833743Z /docker-entrypoint.sh: Sourcing /docker-entrypoint.d/15-local-resolvers.envsh
+2026-08-02T21:52:04.826230378Z /docker-entrypoint.sh: Launching /docker-entrypoint.d/20-envsubst-on-templates.sh
+2026-08-02T21:52:04.831434841Z /docker-entrypoint.sh: Launching /docker-entrypoint.d/30-tune-worker-processes.sh
+2026-08-02T21:52:04.834056518Z /docker-entrypoint.sh: Configuration complete; ready for start up
+2026-08-02T21:52:04.848122180Z 2026/08/02 21:52:04 [notice] 1#1: using the "epoll" event method
+2026-08-02T21:52:04.848226154Z 2026/08/02 21:52:04 [notice] 1#1: nginx/1.31.3
+2026-08-02T21:52:04.848232984Z 2026/08/02 21:52:04 [notice] 1#1: built by gcc 15.2.0 (Alpine 15.2.0) 
+2026-08-02T21:52:04.848237744Z 2026/08/02 21:52:04 [notice] 1#1: OS: Linux 6.14.0-1018-aws
+2026-08-02T21:52:04.848242485Z 2026/08/02 21:52:04 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1024:524288
+2026-08-02T21:52:04.849771991Z 2026/08/02 21:52:04 [notice] 1#1: start worker processes
+2026-08-02T21:52:04.850144585Z 2026/08/02 21:52:04 [notice] 1#1: start worker process 30
+2026-08-02T21:52:04.850759028Z 2026/08/02 21:52:04 [notice] 1#1: start worker process 31
+2026-08-02T21:52:04.850812190Z 2026/08/02 21:52:04 [notice] 1#1: start worker process 32
+2026-08-02T21:52:04.851821777Z 2026/08/02 21:52:04 [notice] 1#1: start worker process 33
+2026-08-02T21:52:09.818130822Z [IP_ADDRESS] - - [02/Aug/2026:21:52:09 +0000] "GET / HTTP/1.1" 200 896 "-" "curl/8.5.0" "-"
+2026-08-02T21:54:40.712006644Z [IP_ADDRESS] - - [02/Aug/2026:21:54:40 +0000] "GET / HTTP/1.1" 200 896 "-" "Wget" "-"
+2026-08-02T21:54:56.387269115Z [IP_ADDRESS] - - [02/Aug/2026:21:54:56 +0000] "HEAD / HTTP/1.1" 200 0 "-" "curl/8.21.0" "-"
+2026-08-02T21:55:54.587688714Z [IP_ADDRESS] - - [02/Aug/2026:21:55:54 +0000] "GET / HTTP/1.1" 200 896 "-" "curl/8.21.0" "-"
+
+RESOURCE SNAPSHOT
+CPU=0.00% Memory=4.793MiB / 15.46GiB MemoryPercent=0.03% Network=13.2kB / 5.98kB Block=0B / 12.3kB PIDs=5
+
+PROCESS SNAPSHOT
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                4709                4685                0                   21:52               ?                   00:00:00            nginx: master process nginx -g daemon off;
+message+            4784                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+message+            4785                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+message+            4786                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+message+            4787                4709                0                   21:52               ?                   00:00:00            nginx: worker process
+
+DIAGNOSTIC HINTS
+
+END OF REPORT

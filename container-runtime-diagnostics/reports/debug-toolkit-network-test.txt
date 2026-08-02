@@ -1,0 +1,24 @@
+Identity:
+uid=65534(nobody) gid=65534(nobody) groups=65534(nobody)
+
+DNS:
+Server:		[IP_ADDRESS]
+Address:	[IP_ADDRESS]#53
+
+Non-authoritative answer:
+Name:	webserver-debug
+Address: [IP_ADDRESS]
+
+
+TCP connectivity:
+
+HTTP:
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+
+Routes:
+default via [IP_ADDRESS] dev eth0 
+[IP_ADDRESS]/16 dev eth0 proto kernel scope link src [IP_ADDRESS] 

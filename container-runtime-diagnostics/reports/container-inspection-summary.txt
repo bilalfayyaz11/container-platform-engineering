@@ -1,0 +1,21 @@
+Container Debugging Inspection Report
+Generated: 2026-08-02T21:53:14+00:00
+
+Container: webserver-debug
+Status=running ExitCode=0 Running=true Image=nginx:alpine Restart=no
+
+Container: env-debug
+Status=running ExitCode=0 Running=true Image=alpine:latest Restart=no
+
+Container: noisy-service
+Status=running ExitCode=0 Running=true Image=alpine:latest Restart=no
+
+Container: misconfigured-web
+Status=running ExitCode=0 Running=true Image=nginx:alpine Restart=no
+
+Container: startup-failure
+Status=created ExitCode=127 Running=false Image=alpine:latest Restart=no
+
+Container: debug-config
+Status=running ExitCode=0 Running=true Image=alpine:latest Restart=unless-stopped
+

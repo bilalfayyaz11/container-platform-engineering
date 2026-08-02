@@ -1,0 +1,6 @@
+APP_ENV=staging
+DEBUG_MODE=true
+API_TOKEN=[REDACTED]
+LOG_LEVEL=debug
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+

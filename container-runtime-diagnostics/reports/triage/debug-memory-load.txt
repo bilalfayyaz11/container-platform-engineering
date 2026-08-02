@@ -1,0 +1,80 @@
+Container Diagnostic Report
+===========================
+Container: debug-memory-load
+Generated: 2026-08-02T21:56:05+00:00
+
+STATUS
+Name=debug-memory-load Image=python:3.13-alpine Status=Up About a minute Ports=
+
+STATE
+Status=running Running=true ExitCode=0 OOMKilled=false Restarting=false RestartCount=0 Error=
+
+TIMESTAMPS
+Created=2026-08-02T21:54:07.662822329Z Started=2026-08-02T21:54:07.878346228Z Finished=0001-01-01T00:00:00Z
+
+IMAGE AND COMMAND
+Image=python:3.13-alpine Entrypoint=null Command=["python","-u","-c","\nimport time\n\nchunks = []\n\nfor index in range(70):\n    chunks.append(bytearray(1024 * 1024))\n\n    if index % 10 == 0:\n        print(f\"allocated_mb={index + 1}\", flush=True)\n\n    time.sleep(0.15)\n\nprint(\"allocation_complete\", flush=True)\ntime.sleep(3600)\n"] WorkingDir=/ User=
+
+RESOURCE LIMITS
+Memory=100663296 MemorySwap=100663296 NanoCPUs=250000000 CpuShares=0 PidsLimit=32
+
+SECURITY
+Privileged=false ReadOnly=false CapAdd=null CapDrop=null SecurityOptions=null
+
+RESTART AND LOGGING
+RestartPolicy=no LogDriver=json-file
+
+PORTS
+{}
+
+NETWORKS
+{
+    "bridge": {
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "[CONTAINER_OR_IMAGE_ID]",
+        "EndpointID": "[CONTAINER_OR_IMAGE_ID]",
+        "Gateway": "[IP_ADDRESS]",
+        "IPAddress": "[IP_ADDRESS]",
+        "MacAddress": "d6:29:07:23:d3:de",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    }
+}
+
+MOUNTS
+[]
+
+ENVIRONMENT — REDACTED
+PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305
+PYTHON_VERSION=3.13.14
+PYTHON_SHA256=[CONTAINER_OR_IMAGE_ID]
+
+
+RECENT LOGS
+2026-08-02T21:54:08.352144377Z allocated_mb=1
+2026-08-02T21:54:09.863407184Z allocated_mb=11
+2026-08-02T21:54:11.374882609Z allocated_mb=21
+2026-08-02T21:54:12.886859572Z allocated_mb=31
+2026-08-02T21:54:14.399310642Z allocated_mb=41
+2026-08-02T21:54:15.910142344Z allocated_mb=51
+2026-08-02T21:54:17.422168249Z allocated_mb=61
+2026-08-02T21:54:18.932209191Z allocation_complete
+
+RESOURCE SNAPSHOT
+CPU=0.00% Memory=74.07MiB / 96MiB MemoryPercent=77.16% Network=2.62kB / 126B Block=0B / 41kB PIDs=1
+
+PROCESS SNAPSHOT
+UID                 PID                 PPID                C                   STIME               TTY                 TIME                CMD
+root                6711                6688                0                   21:54               ?                   00:00:00            python -u -c import time chunks = [] for index in range(70): chunks.append(bytearray(1024 * 1024)) if index % 10 == 0: print(f"allocated_mb={index + 1}", flush=True) time.sleep(0.15) print("allocation_complete", flush=True) time.sleep(3600)
+
+DIAGNOSTIC HINTS
+
+END OF REPORT

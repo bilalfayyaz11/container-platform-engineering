@@ -1,0 +1,13 @@
+INFO iteration=1 service=healthy
+INFO iteration=2 service=healthy
+INFO iteration=3 service=healthy
+WARN iteration=3 latency=high
+INFO iteration=4 service=healthy
+ERROR iteration=5 backend=unreachable
+INFO iteration=5 service=healthy
+WARN iteration=6 latency=high
+INFO iteration=6 service=healthy
+INFO iteration=7 service=healthy
+INFO iteration=8 service=healthy
+INFO iteration=9 service=healthy
+WARN iteration=9 latency=high

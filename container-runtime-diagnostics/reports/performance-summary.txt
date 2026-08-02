@@ -1,0 +1,19 @@
+Container Performance Summary
+Generated: 2026-08-02T21:54:57+00:00
+
+Baseline:
+Container=webserver-debug CPU=0.00% Memory=4.719MiB / 15.46GiB MemoryPercent=0.03% Network=3.72kB / 1.68kB Block=0B / 12.3kB PIDs=5
+Container=env-debug CPU=0.00% Memory=348KiB / 15.46GiB MemoryPercent=0.00% Network=2.71kB / 126B Block=0B / 0B PIDs=1
+Container=noisy-service CPU=0.13% Memory=484KiB / 15.46GiB MemoryPercent=0.00% Network=2.66kB / 126B Block=0B / 0B PIDs=2
+Container=misconfigured-web CPU=0.00% Memory=4.605MiB / 15.46GiB MemoryPercent=0.03% Network=2.57kB / 264B Block=0B / 12.3kB PIDs=5
+Container=debug-config CPU=0.00% Memory=340KiB / 256MiB MemoryPercent=0.13% Network=2.29kB / 126B Block=0B / 0B PIDs=1
+
+CPU load:
+Container=debug-cpu-load CPU=50.70% Memory=348KiB / 64MiB PIDs=1
+
+Memory load:
+Container=debug-memory-load CPU=0.00% Memory=74.07MiB / 96MiB MemoryPercent=77.16% PIDs=1
+
+Resource configuration:
+CPUContainer NanoCPUs=500000000 Memory=67108864 Pids=32
+MemoryContainer Memory=100663296 Swap=100663296 OOMKilled=false
