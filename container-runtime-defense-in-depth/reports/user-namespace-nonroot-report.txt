@@ -1,0 +1,17 @@
+User Namespace and Non-Root Validation
+Generated: 2026-08-02T21:38:23+00:00
+
+Docker security options:
+["name=apparmor","name=seccomp,profile=builtin","name=userns","name=cgroupns"]
+
+Image user:
+10001:10001
+
+Container identity:
+uid=10001(appuser) gid=10001(appgroup) groups=10001(appgroup)
+
+Runtime limits:
+ReadOnly=true Pids=64 Memory=134217728 NanoCPUs=500000000
+
+Health:
+healthy

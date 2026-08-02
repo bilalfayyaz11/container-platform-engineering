@@ -1,0 +1,5 @@
+NoNewPrivs:	1
+Seccomp:	2
+Seccomp_filters:	1
+
+container-security-runtime (enforce)

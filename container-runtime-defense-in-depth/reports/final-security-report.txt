@@ -1,0 +1,33 @@
+Container Security Engineering Final Report
+Generated: 2026-08-02T21:45:08+00:00
+
+HOST SECURITY
+- Docker user namespace remapping enabled
+- Container root translated to host UID 100000
+- AppArmor available and enforcing
+- Docker built-in and custom seccomp supported
+- cgroup v2 resource controls available
+
+IMAGE SECURITY
+- Application configured for UID 10001:GID 10001
+- Read-only root filesystem
+- No additional Linux capabilities
+- Vulnerability reports generated with Trivy
+
+RUNTIME SECURITY
+- Seccomp filter active
+- AppArmor profile active
+- No-new-privileges active
+- Docker socket unavailable
+- Mount syscall blocked
+- Temporary filesystem writable but noexec
+
+RESOURCE CONTROLS
+- Memory: 128 MiB
+- CPU: 0.50 core
+- PID limit: 64
+- File descriptor limit: 1024
+
+APPLICATION
+- Health status: healthy
+- Runtime identity: uid=10001(appuser) gid=10001(appgroup) groups=10001(appgroup)

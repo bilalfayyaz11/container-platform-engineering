@@ -1,0 +1,13 @@
+FROM alpine:3.18
+
+LABEL org.opencontainers.image.title="Outdated Security Comparison Image"
+LABEL org.opencontainers.image.description="Intentionally older base for vulnerability comparison"
+
+RUN apk add --no-cache \
+      curl \
+      openssl \
+      busybox-extras
+
+USER root
+
+CMD ["sh", "-c", "sleep 3600"]

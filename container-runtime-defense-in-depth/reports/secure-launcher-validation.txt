@@ -1,0 +1,10 @@
+Identity:
+uid=10001(appuser) gid=10001(appgroup) groups=10001(appgroup)
+
+Process security:
+NoNewPrivs:	1
+Seccomp:	2
+Seccomp_filters:	1
+
+AppArmor:
+container-security-runtime (enforce)

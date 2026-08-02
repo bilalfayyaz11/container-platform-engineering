@@ -1,0 +1,42 @@
+#include <tunables/global>
+
+profile container-security-runtime flags=(attach_disconnected,mediate_deleted) {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  network inet stream,
+  network inet6 stream,
+
+  /bin/** ixr,
+  /usr/bin/** ixr,
+  /usr/local/bin/** ixr,
+
+  /lib/** mr,
+  /usr/lib/** mr,
+  /usr/local/lib/** mr,
+
+  /app/** r,
+  /etc/** r,
+  /proc/** r,
+  /sys/devices/system/cpu/** r,
+
+  /tmp/** rw,
+
+  deny /root/** rwklx,
+  deny /home/** rwklx,
+  deny /var/run/docker.sock rwklx,
+
+  deny capability sys_admin,
+  deny capability sys_module,
+  deny capability sys_rawio,
+  deny capability sys_time,
+  deny capability mac_admin,
+  deny capability mac_override,
+
+  deny mount,
+  deny umount,
+  deny pivot_root,
+
+  signal (receive) peer=unconfined,
+  signal (send) peer=unconfined,
+}

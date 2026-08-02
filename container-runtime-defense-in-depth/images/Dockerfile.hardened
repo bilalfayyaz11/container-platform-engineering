@@ -1,0 +1,20 @@
+FROM alpine:latest
+
+LABEL org.opencontainers.image.title="Hardened Security Comparison Image"
+LABEL org.opencontainers.image.description="Minimal non-root image for security validation"
+
+RUN addgroup \
+      --system \
+      --gid 10001 \
+      appgroup \
+    && adduser \
+      --system \
+      --uid 10001 \
+      --ingroup appgroup \
+      appuser
+
+USER 10001:10001
+
+WORKDIR /home/appuser
+
+CMD ["sh", "-c", "sleep 3600"]

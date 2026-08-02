@@ -1,0 +1,10 @@
+Container Resource Security Validation
+Generated: 2026-08-02T21:44:08+00:00
+
+Memory=134217728 Swap=134217728 NanoCPUs=500000000 Pids=32 ReadOnly=true
+
+CPU=0.00% Memory=320KiB / 128MiB PIDs=1
+
+memory.max=134217728
+pids.max=32
+cpu.max=50000 100000

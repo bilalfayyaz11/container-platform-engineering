@@ -1,0 +1,2 @@
+mkdir: can't create directory '/mnt/security-test': Permission denied
+mount: mounting tmpfs on /mnt/security-test failed: No such file or directory

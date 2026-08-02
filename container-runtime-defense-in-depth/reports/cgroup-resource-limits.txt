@@ -1,0 +1,4 @@
+memory.max=134217728
+pids.max=32
+cpu.max=50000 100000
+nofile=256

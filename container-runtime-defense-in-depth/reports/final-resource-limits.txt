@@ -1,0 +1,4 @@
+memory.max=
+pids.max=
+cpu.max=
+nofile=1024

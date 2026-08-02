@@ -1,0 +1,5 @@
+uid=10001(appuser) gid=10001(appgroup) groups=10001(appgroup)
+NoNewPrivs:	1
+Seccomp:	2
+Seccomp_filters:	1
+container-security-runtime (enforce)

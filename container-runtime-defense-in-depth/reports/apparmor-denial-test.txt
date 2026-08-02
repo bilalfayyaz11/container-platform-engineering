@@ -1,0 +1,1 @@
+touch: /root/restricted-file: Permission denied
