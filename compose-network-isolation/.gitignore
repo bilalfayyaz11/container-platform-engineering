@@ -1,0 +1,28 @@
+# Runtime credentials
+secrets/
+.env
+.env.*
+!.env.example
+
+# Generated evidence
+reports/
+network-map.txt
+*.log
+*.json
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
