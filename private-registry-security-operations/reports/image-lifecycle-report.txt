@@ -1,0 +1,24 @@
+Private Registry Image Lifecycle
+Generated: 2026-08-02T15:51:44+00:00
+
+Catalog:
+{"repositories":["registry-web-service"]}
+
+Tags:
+{"name":"registry-web-service","tags":["1.0.0","2.0.0","latest"]}
+
+Images:
+registry-web-service:2.0.0 | 92.7MB | 786606ef92a0
+localhost:5000/registry-web-service:2.0.0 | 92.7MB | 786606ef92a0
+registry-web-service:1.0.0 | 92.7MB | 9a8acd0ae0fe
+registry-web-service:latest | 92.7MB | 9a8acd0ae0fe
+localhost:5000/registry-web-service:1.0.0 | 92.7MB | 9a8acd0ae0fe
+
+Version 1 digest:
+registry-web-service@sha256:9a8acd0ae0fe7d62511907ff7aff3ea58bf2f84b3cf83806c2a297eb8f5fda08
+
+Version 2 digest:
+registry-web-service@sha256:786606ef92a0ca793dea7349d060a2a09cbb0b6d02f606b3a46bfcfdfb1af271
+
+Persistent storage:
+26M	/home/ubuntu/private-registry-engineering/registry/data

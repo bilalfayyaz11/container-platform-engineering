@@ -1,0 +1,12 @@
+FROM nginx:alpine
+
+LABEL org.opencontainers.image.title="Container Registry Service"
+LABEL org.opencontainers.image.version="1.0.0"
+LABEL org.opencontainers.image.description="Versioned web image for private registry validation"
+
+COPY index.html /usr/share/nginx/html/index.html
+
+EXPOSE 80
+
+HEALTHCHECK --interval=10s --timeout=3s --start-period=5s --retries=3 \
+  CMD wget --quiet --tries=1 --spider http://127.0.0.1/ || exit 1

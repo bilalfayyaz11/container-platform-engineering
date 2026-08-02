@@ -1,0 +1,12 @@
+Private Registry Initial Status
+Generated: 2026-08-02T15:49:53+00:00
+
+Application image:
+registry-web-service:1.0.0 92.7MB 9a8acd0ae0fe
+registry-web-service:latest 92.7MB 9a8acd0ae0fe
+
+Registry container:
+private-registry registry:3 Up 8 seconds 127.0.0.1:5000->5000/tcp
+
+Registry catalog:
+{"repositories":[]}
