@@ -1,0 +1,11 @@
+{
+"name":"typescript-app",
+"version":"1.0.0",
+"scripts":{
+"build":"tsc",
+"start":"node dist/app.js"
+},
+"devDependencies":{
+"typescript":"^5"
+}
+}
