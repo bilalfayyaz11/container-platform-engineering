@@ -1,0 +1,13 @@
+{
+  "name": "container-image-optimization",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Optimized container image management demonstration",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "5.1.0"
+  }
+}

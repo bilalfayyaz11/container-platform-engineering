@@ -1,0 +1,17 @@
+Image analysis generated at 2026-08-02T15:37:25+00:00
+
+Image: container-image-optimization:baseline
+SizeBytes: 410764346
+Layers: 11
+ConfiguredUser: root
+---
+Image: container-image-optimization:optimized
+SizeBytes: 59929264
+Layers: 9
+ConfiguredUser: appuser
+---
+Image: container-image-optimization:1.0.0
+SizeBytes: 58773074
+Layers: 8
+ConfiguredUser: appuser
+---
