@@ -11,35 +11,35 @@ The standalone image writes a serialized model and structured metrics to a mount
     Standalone Training
 
     Environment Variables
-            |
-            v
+            │
+            ▼
     Multi-Stage Docker Image
-            |
-            +-- Load Dataset
-            +-- Preprocess Data
-            +-- Train Model
-            +-- Calculate Metrics
-            |
-            v
+            │
+            ├── Load Dataset
+            ├── Preprocess Data
+            ├── Train Model
+            └── Calculate Metrics
+            │
+            ▼
     Host-Mounted Output
-    +-- breast-cancer-classifier.joblib
-    +-- metrics.json
+    ├── breast-cancer-classifier.joblib
+    └── metrics.json
 
 
     Distributed Workflow
 
     Data Preparation Container
-            |
-            v
+            │
+            ▼
     Prepared Data Volume
-            |
-            v
+            │
+            ▼
     Training Worker Container
-            |
-            v
+            │
+            ▼
     Results Volume
-    +-- distributed-classifier.joblib
-    +-- results.json
+    ├── distributed-classifier.joblib
+    └── results.json
 
 ## Prerequisites
 
@@ -51,20 +51,20 @@ The standalone image writes a serialized model and structured metrics to a mount
 
 ## Setup and Reproduction
 
-Build the standalone image:
+Build the standalone training image:
 
-    docker build -t reproducible-ml-trainer:1.0.0 training/
+    docker build       --tag reproducible-ml-trainer:1.0.0       training/
 
-Run model training:
+Create an output directory:
 
     mkdir -p output
     chmod 0777 output
 
-    docker run --rm \
-      --mount type=bind,source="$PWD/output",target=/app/output \
-      reproducible-ml-trainer:1.0.0
+Run the training container:
 
-Inspect generated artifacts:
+    docker run --rm       --mount type=bind,source="$PWD/output",target=/app/output       reproducible-ml-trainer:1.0.0
+
+Inspect the generated artifacts:
 
     ls -lh output
     cat output/metrics.json
@@ -73,27 +73,21 @@ Run the distributed workflow:
 
     docker compose down --volumes --remove-orphans 2>/dev/null || true
     docker compose build
-    docker compose up \
-      --abort-on-container-exit \
-      --exit-code-from training-worker
+    docker compose up       --abort-on-container-exit       --exit-code-from training-worker
 
-Read persisted results:
+Inspect service states:
 
-    docker run --rm \
-      --volume containerized-ml-training-results:/results:ro \
-      alpine:3.22 \
-      cat /results/results.json
+    docker compose ps -a
+
+Read the persisted training results:
+
+    docker run --rm       --volume containerized-ml-training-results:/results:ro       alpine:3.22       cat /results/results.json
 
 Validate upstream failure protection:
 
-    docker compose \
-      -f compose.yaml \
-      -f compose.failure.yaml \
-      up \
-      --abort-on-container-exit \
-      --exit-code-from data-preparation
+    docker compose       -f compose.yaml       -f compose.failure.yaml       up       --abort-on-container-exit       --exit-code-from data-preparation
 
-The data-preparation container must exit with a non-zero status, and the training worker must not start.
+The data-preparation container should exit with a non-zero status, and the training worker must not start.
 
 ## Tools Used
 
@@ -103,14 +97,14 @@ The data-preparation container must exit with a non-zero status, and the trainin
 - scikit-learn
 - joblib
 - Logistic Regression
-- Named volumes
+- Named Docker volumes
 - Bind mounts
 - JSON serialization
 
 ## Key Skills Demonstrated
 
 - Multi-stage Docker image construction
-- Reproducible model training
+- Reproducible model training with fixed random seeds
 - Runtime configuration through environment variables
 - Non-root container execution
 - Model and metrics persistence
@@ -120,25 +114,29 @@ The data-preparation container must exit with a non-zero status, and the trainin
 
 ## Real-World Use Case
 
-This architecture supports repeatable model training in CI pipelines, scheduled model refreshes, offline processing, experiment execution, and on-premises ML environments.
+This architecture supports repeatable model training in CI pipelines, scheduled model refreshes, offline data processing, experiment execution, and on-premises ML environments. The same container contracts can later be transferred to Kubernetes Jobs or workflow orchestration platforms.
 
 ## Lessons Learned
 
-- Fixed random seeds improve reproducibility.
-- Artifacts must be stored outside ephemeral containers.
-- Downstream services should require successful upstream completion.
-- Non-root containers require deliberate volume permissions.
+- Fixed random seeds improve reproducibility across independent runs.
+- Model artifacts must be stored outside ephemeral container filesystems.
+- Downstream services should depend on successful upstream completion.
+- Non-root containers require deliberate volume-permission handling.
 - Failure paths must be tested alongside successful execution.
 
 ## Troubleshooting
 
-Docker socket permission:
+### Docker Socket Permission
+
+Add the current user to the Docker group:
 
     sudo usermod -aG docker "$USER"
     newgrp docker
 
-Bind-mount permission:
+### Bind-Mount Permission
+
+Allow the non-root container user to write artifacts:
 
     chmod 0777 output
 
-In production, replace broad permissions with explicit ownership matching the container user.
+In production, replace broad permissions with explicit UID and GID ownership matching the container identity.
