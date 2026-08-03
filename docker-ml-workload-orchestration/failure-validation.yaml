@@ -1,0 +1,5 @@
+services:
+  data-preparation:
+    entrypoint:
+      - python
+      - /app/nonexistent-prepare-script.py

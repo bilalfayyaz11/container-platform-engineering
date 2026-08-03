@@ -1,0 +1,31 @@
+services:
+  data-preparation:
+    build:
+      context: ./compose
+      dockerfile: data-preparation/Dockerfile
+    image: ml-data-preparation:1.0.0
+    volumes:
+      - prepared-data:/pipeline/data
+    restart: "no"
+
+  model-worker:
+    build:
+      context: ./compose
+      dockerfile: model-worker/Dockerfile
+    image: ml-model-worker:1.0.0
+    depends_on:
+      data-preparation:
+        condition: service_completed_successfully
+    environment:
+      RANDOM_SEED: "42"
+      MAX_ITERATIONS: "500"
+    volumes:
+      - prepared-data:/pipeline/data:ro
+      - model-results:/pipeline/results
+    restart: "no"
+
+volumes:
+  prepared-data:
+    name: containerized-ml-prepared-data
+  model-results:
+    name: containerized-ml-results
