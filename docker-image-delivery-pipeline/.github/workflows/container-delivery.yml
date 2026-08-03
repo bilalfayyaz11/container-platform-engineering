@@ -1,0 +1,163 @@
+name: Container Delivery
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docker-image-delivery-pipeline/**"
+      - ".github/workflows/container-delivery.yml"
+
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "docker-image-delivery-pipeline/**"
+      - ".github/workflows/container-delivery.yml"
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+
+concurrency:
+  group: container-delivery-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: docker-image-delivery-pipeline
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Configure Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: docker-image-delivery-pipeline/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run automated tests
+        run: npm test
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+  build:
+    name: Build and Publish Image
+    needs: test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v6
+
+      - name: Configure QEMU
+        uses: docker/setup-qemu-action@v4
+
+      - name: Configure Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Authenticate to Docker Hub
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Generate image metadata
+        id: metadata
+        uses: docker/metadata-action@v6
+        with:
+          images: ${{ secrets.DOCKER_USERNAME }}/container-delivery-api
+          tags: |
+            type=raw,value=latest,enable={{is_default_branch}}
+            type=sha,prefix=sha-
+            type=ref,event=branch
+            type=ref,event=pr
+
+      - name: Build and publish image
+        uses: docker/build-push-action@v7
+        with:
+          context: ./docker-image-delivery-pipeline
+          file: ./docker-image-delivery-pipeline/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.metadata.outputs.tags }}
+          labels: ${{ steps.metadata.outputs.labels }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          provenance: true
+          sbom: true
+
+  verify:
+    name: Verify Published Image
+    if: github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Authenticate to Docker Hub
+        uses: docker/login-action@v4
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_TOKEN }}
+
+      - name: Pull published image
+        run: |
+          docker pull "${{ secrets.DOCKER_USERNAME }}/container-delivery-api:latest"
+
+      - name: Start verification container
+        run: |
+          docker run -d \
+            --name container-delivery-verification \
+            --publish 3000:3000 \
+            --env NODE_ENV=verification \
+            --env APP_VERSION="${GITHUB_SHA::7}" \
+            "${{ secrets.DOCKER_USERNAME }}/container-delivery-api:latest"
+
+      - name: Wait for healthy container
+        run: |
+          for attempt in $(seq 1 30); do
+            STATUS=$(docker inspect \
+              --format='{{if .State.Health}}{{.State.Health.Status}}{{else}}unavailable{{end}}' \
+              container-delivery-verification)
+
+            echo "Attempt ${attempt}: ${STATUS}"
+
+            if [ "${STATUS}" = "healthy" ]; then
+              exit 0
+            fi
+
+            sleep 2
+          done
+
+          docker logs container-delivery-verification
+          exit 1
+
+      - name: Verify application endpoints
+        run: |
+          curl --fail --silent http://127.0.0.1:3000
+          curl --fail --silent http://127.0.0.1:3000/health
+
+      - name: Display runtime evidence
+        if: always()
+        run: |
+          docker ps -a
+          docker logs container-delivery-verification 2>/dev/null || true
+
+      - name: Remove verification container
+        if: always()
+        run: |
+          docker rm -f container-delivery-verification 2>/dev/null || true

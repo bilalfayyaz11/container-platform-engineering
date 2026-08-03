@@ -1,0 +1,18 @@
+services:
+  staging:
+    image: ${DOCKER_USERNAME}/container-delivery-api:${IMAGE_TAG:-latest}
+    container_name: container-delivery-api-staging
+    ports:
+      - "3001:3000"
+    env_file:
+      - config/environments/staging.env
+    restart: unless-stopped
+
+  production:
+    image: ${DOCKER_USERNAME}/container-delivery-api:${IMAGE_TAG:-latest}
+    container_name: container-delivery-api-production
+    ports:
+      - "8080:3000"
+    env_file:
+      - config/environments/production.env
+    restart: always
