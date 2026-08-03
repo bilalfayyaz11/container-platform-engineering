@@ -1,0 +1,15 @@
+{
+  "name": "multi-platform-runtime-api",
+  "version": "1.0.0",
+  "description": "Architecture-aware Node.js API for multi-platform container builds",
+  "main": "server.js",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
