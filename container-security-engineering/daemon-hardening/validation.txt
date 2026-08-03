@@ -1,0 +1,7 @@
+Docker service: active
+dockremap subordinate UID: dockremap:231072:65536
+dockremap subordinate GID: dockremap:231072:65536
+Host-visible container UID: 231072
+Default nofile limit: 64000
+ICC test exit code: 1
+Seccomp profile: /etc/docker/seccomp/hardened-default.json

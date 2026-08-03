@@ -1,0 +1,8 @@
+FILE: secure-app/Dockerfile
+secure-app/Dockerfile | DL3007 | line 13 | warning | Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag
+secure-app/Dockerfile | DL3018 | line 15 | warning | Pin versions in apk add. Instead of `apk add <package>` use `apk add <package>=<version>`
+secure-app/Dockerfile | DL3025 | line 29 | warning | Use arguments JSON notation for CMD and ENTRYPOINT arguments
+FILE: vulnerable-app/Dockerfile
+vulnerable-app/Dockerfile | DL3008 | line 3 | warning | Pin versions in apt get install. Instead of `apt-get install <package>` use `apt-get install <package>=<version>`
+vulnerable-app/Dockerfile | DL3009 | line 3 | info | Delete the apt lists (/var/lib/apt/lists) after installing something
+vulnerable-app/Dockerfile | DL3015 | line 3 | info | Avoid additional packages by specifying `--no-install-recommends`

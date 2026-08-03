@@ -1,0 +1,5 @@
+Vulnerable image exit code: 0
+Secure image exit code: 0
+Vulnerable image report count: 4
+Secure image report count: 4
+Hadolint ERROR findings: 0

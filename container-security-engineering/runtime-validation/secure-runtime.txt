@@ -1,0 +1,7 @@
+Health status: healthy
+HTTP status: 200
+Configured image user: 1001:1001
+Container host PID: 15031
+Host-visible UID: 232073
+Host-visible GID: 232073
+Image size: 8.15 MB
